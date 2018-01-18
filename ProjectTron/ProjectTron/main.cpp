@@ -16,8 +16,8 @@ int main() {
 	int SCREEN_H = 800;
 	int head_x = 1;
 	int head_y = 1;
-	int P2head_x = 39;
-	int P2head_y = 39;
+	int P2head_x = 38;
+	int P2head_y = 38;
 //	int snak_x = 2;
 //	int snak_y = 2;
 	int sneksize = 20;
@@ -110,33 +110,6 @@ int main() {
 
 			//}
 
-
-
-			//check if snek 8 snak
-			//if (grid[snak_x] == grid[head_x] && grid[snak_y] == grid[head_y]) {
-			//	Eatgoal = true;
-			//	bite = al_load_sample("Chomp.wav");
-			//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-			//	cout << "om nom" << endl;
-
-			//	snake_length += 2;
-			//	score++;
-			//	speed = speed - 0.005;
-
-			//}
-
-
-			//redraw snack
-	/*		if (Eatgoal == true) {
-				grid[snak_x][snak_y] = 0;
-				cout << "snak despensing!" << endl;
-				snak_x = rand() % 40;
-				snak_y = rand() % 40;
-				Eatgoal = false;
-
-				cout << "Goal @ " << snak_x << ", " << snak_y << endl;
-			}*/
-
 			//move snek head
 			if (key[0] && head_y > 0)
 				head_y -= 1;
@@ -162,16 +135,16 @@ int main() {
 				head_y < 40)
 				grid[head_x][head_y] = 1;
 
-			//if (P2head_x >= 0 &&
-			//	P2head_y >= 0 &&
-			//	P2head_x < 40 &&
-			//	P2head_y < 40)
-			//	grid[P2head_x][P2head_y] = 2;
+			if (P2head_x >= 0 &&
+				P2head_y >= 0 &&
+				P2head_x < 40 &&
+				P2head_y < 40)
+				grid[P2head_x][P2head_y] = 2;
 			//push the coordinates into the vector
 			nodes.insert(nodes.begin(), head_y);
 			nodes.insert(nodes.begin(), head_x);
-			nodes.insert(nodes.begin(), P2head_y);
-			nodes.insert(nodes.begin(), P2head_x);
+			//nodes.insert(nodes.begin(), P2head_y);
+			//nodes.insert(nodes.begin(), P2head_x);
 
 			if (head_x < 0 || head_y < 0)
 				cout << "MATRIX ERROR" << endl;
@@ -188,17 +161,17 @@ int main() {
 				return 0;
 			}
 
-			//if (P2head_x <= -1 || P2head_x > 39 || P2head_y <= -1 || P2head_y > 39) {
-			//	al_clear_to_color(al_map_rgb(0, 0, 0));
+			if (P2head_x <= -1 || P2head_x > 39 || P2head_y <= -1 || P2head_y > 39) {
+				al_clear_to_color(al_map_rgb(0, 0, 0));
 			//	//			al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
 			//	//				bite = al_load_sample("dead.wav");
 			//	//				al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-			//	al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
-			//	al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 310, NULL, "Tron1 done winned dude");
-			//	al_flip_display();
-			//	al_rest(2);
-			//	return 0;
-			//}
+				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
+				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 310, NULL, "Tron1 done winned dude");
+				al_flip_display();
+				al_rest(2);
+				return 0;
+			}
 
 			for (iter = nodes.begin() + 2; iter < nodes.end(); iter += 2) {
 				//cout << "Head is " << head_x << ", " << head_y << endl;
@@ -218,18 +191,18 @@ int main() {
 					return 0;
 				}
 
-				//if ((P2head_x == *iter &&  P2head_y == *(iter + 1))) {
-				//	//cout << "Snek tail killed snek" << endl;
-				//	al_clear_to_color(al_map_rgb(0, 0, 0));
-				//	//	al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
-				//	//	bite = al_load_sample("dead.wav");
-				//	//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-				//	al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
-				//	al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 310, NULL, "Tron1 done winned dude");
-				//	al_flip_display();
-				//	al_rest(2);
-				//	return 0;
-				//}
+				if ((P2head_x == *iter &&  P2head_y == *(iter + 1))) {
+					//cout << "Snek tail killed snek" << endl;
+					al_clear_to_color(al_map_rgb(0, 0, 0));
+					//	al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
+					//	bite = al_load_sample("dead.wav");
+					//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
+					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron1 done winned dude");
+					al_flip_display();
+					al_rest(2);
+					return 0;
+				}
 			}
 
 			//erase nodes that have "fallen" off the end of the snek
