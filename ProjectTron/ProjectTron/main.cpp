@@ -11,13 +11,14 @@ using namespace std;
 
 
 int main() {
-
+	//variables and stuff
 	int SCREEN_W = 800;
 	int SCREEN_H = 800;
 	int head_x = 1;
 	int head_y = 1;
 	int P2head_x = 38;
 	int P2head_y = 38;
+	const int gridsize = 40;
 //	int snak_x = 2;
 //	int snak_y = 2;
 	int sneksize = 20;
@@ -27,10 +28,10 @@ int main() {
 //	bool Eatgoal = false;
 	bool doexit = false;
 	bool redraw = true;
-
+	//how fast it goes
 	double speed = 0.05;
 //	int score = 0;
-
+	//allegro stuff
 	al_init();
 	al_install_keyboard();
 	al_install_audio();
@@ -46,9 +47,11 @@ int main() {
 //	ALLEGRO_SAMPLE_INSTANCE*background = NULL;
 	ALLEGRO_TIMER*timer = NULL;
 	ALLEGRO_EVENT_QUEUE*event_queue = NULL;
-
+//trails
 	vector<int>nodes;
+	vector<int>nodes2;
 	vector<int>::const_iterator iter;
+
 
 
 //	al_reserve_samples(2);
@@ -58,10 +61,10 @@ int main() {
 	font = al_create_builtin_font();
 	timer = al_create_timer(speed);
 	display = al_create_display(SCREEN_W, SCREEN_H);
-
-	int grid[40][40];
-	for (int i = 0; i < 40; i++)
-		for (int j = 0; j < 40; j++)
+//map
+	int grid[gridsize][gridsize];
+	for (int i = 0; i < gridsize; i++)
+		for (int j = 0; j < gridsize; j++)
 			grid[i][j] = 0;
 
 
@@ -78,7 +81,7 @@ int main() {
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 	al_flip_display();
 	al_start_timer(timer);
-	//cout << "Flag1" << endl;
+
 	while (doexit != true) {
 
 		ALLEGRO_EVENT ev;
@@ -95,8 +98,8 @@ int main() {
 		if (ev.type == ALLEGRO_EVENT_TIMER) {
 
 			//wipe map
-	/*		for (int i = 0; i < 40; i++)
-				for (int j = 0; j < 40; j++) {
+	/*		for (int i = 0; i < gridsize; i++)
+				for (int j = 0; j < gridsize; j++) {
 					if (grid[i][j] == 1)
 						grid[i][j] = 0;
 
@@ -113,61 +116,61 @@ int main() {
 			//move snek head
 			if (key[0] && head_y > 0)
 				head_y -= 1;
-			if (key[1] && head_y < 40)
+			if (key[1] && head_y < gridsize)
 				head_y += 1;
 			if (key[2] && head_x > 0)
 				head_x -= 1;
-			if (key[3] && head_x < 40)
+			if (key[3] && head_x < gridsize)
 				head_x += 1;
 			if (P2key[0] && P2head_y > 0)
 				P2head_y -= 1;
-			if (P2key[1] && P2head_y < 40)
+			if (P2key[1] && P2head_y < gridsize)
 				P2head_y += 1;
-			if (P2key[2] && P2head_x < 0)
+			if (P2key[2] && P2head_x > 0)
 				P2head_x -= 1;
-			if (P2key[3] && P2head_x < 40)
+			if (P2key[3] && P2head_x < gridsize)
 				P2head_x += 1;
 
 			//draw snek head to map
 			if (head_x >= 0 &&
 				head_y >= 0 &&
-				head_x < 40 &&
-				head_y < 40)
+				head_x < gridsize &&
+				head_y < gridsize)
 				grid[head_x][head_y] = 1;
 
 			if (P2head_x >= 0 &&
 				P2head_y >= 0 &&
-				P2head_x < 40 &&
-				P2head_y < 40)
+				P2head_x < gridsize &&
+				P2head_y < gridsize)
 				grid[P2head_x][P2head_y] = 2;
 			//push the coordinates into the vector
 			nodes.insert(nodes.begin(), head_y);
 			nodes.insert(nodes.begin(), head_x);
-			//nodes.insert(nodes.begin(), P2head_y);
-			//nodes.insert(nodes.begin(), P2head_x);
+			nodes2.insert(nodes2.begin(), P2head_y);
+			nodes2.insert(nodes2.begin(), P2head_x);
 
 			if (head_x < 0 || head_y < 0)
 				cout << "MATRIX ERROR" << endl;
 
-			if (head_x <= -1 || head_x > 39 || head_y <= -1 || head_y > 39) {
+			if (head_x <= -1 || head_x > gridsize -1 || head_y <= -1 || head_y > gridsize -1) {
 				al_clear_to_color(al_map_rgb(0, 0, 0));
 	//			al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
 //				bite = al_load_sample("dead.wav");
 //				al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron1 done dedded dude");
-				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 310, NULL, "Tron2 done winned dude");
+				al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
 				al_flip_display();
 				al_rest(2);
 				return 0;
 			}
 
-			if (P2head_x <= -1 || P2head_x > 39 || P2head_y <= -1 || P2head_y > 39) {
+			if (P2head_x <= -1 || P2head_x > gridsize -1 || P2head_y <= -1 || P2head_y > gridsize -1) {
 				al_clear_to_color(al_map_rgb(0, 0, 0));
 			//	//			al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
 			//	//				bite = al_load_sample("dead.wav");
 			//	//				al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
-				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 310, NULL, "Tron1 done winned dude");
+				al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron1 done winned dude");
 				al_flip_display();
 				al_rest(2);
 				return 0;
@@ -204,7 +207,37 @@ int main() {
 					return 0;
 				}
 			}
+			for (iter = nodes2.begin() + 2; iter < nodes2.end(); iter += 2) {
+				//cout << "Head is " << head_x << ", " << head_y << endl;
+				//cout << "Node values are " << *iter << ", " << *(iter + 1) << endl;
 
+
+				if ((head_x == *iter &&  head_y == *(iter + 1))) {
+					//cout << "Snek tail killed snek" << endl;
+					al_clear_to_color(al_map_rgb(0, 0, 0));
+					//	al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
+					//	bite = al_load_sample("dead.wav");
+					//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron1 done dedded dude");
+					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
+					al_flip_display();
+					al_rest(2);
+					return 0;
+				}
+
+				if ((P2head_x == *iter &&  P2head_y == *(iter + 1))) {
+					//cout << "Snek tail killed snek" << endl;
+					al_clear_to_color(al_map_rgb(0, 0, 0));
+					//	al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
+					//	bite = al_load_sample("dead.wav");
+					//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
+					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron1 done winned dude");
+					al_flip_display();
+					al_rest(2);
+					return 0;
+				}
+			}
 			//erase nodes that have "fallen" off the end of the snek
 //			nodes.erase(nodes.begin() + snake_length, nodes.end());
 
@@ -314,8 +347,8 @@ int main() {
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 //			if (Eatgoal == false)
 //				grid[snak_x][snak_y] = 0;
-			for (int i = 0; i < 40; i++)
-				for (int j = 0; j < 40; j++) {
+			for (int i = 0; i < gridsize; i++)
+				for (int j = 0; j < gridsize; j++) {
 					//0 is background
 					if (grid[i][j] == 0)
 						al_draw_filled_rectangle(i*sneksize, j*sneksize, i*sneksize + sneksize, j*sneksize + sneksize, al_map_rgb(0, 0, 0));
