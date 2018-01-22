@@ -18,6 +18,9 @@ int main() {
 	int head_y = 1;
 	int P2head_x = 38;
 	int P2head_y = 38;
+	int red = 0;
+	int blue = 0;
+	int green = 0;
 	const int gridsize = 40;
 //	int snak_x = 2;
 //	int snak_y = 2;
@@ -78,6 +81,30 @@ int main() {
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
+	al_clear_to_color(al_map_rgb(200, 200, 255));
+	al_draw_textf(font, al_map_rgb(255, 255, 255), 390, 390, NULL, "WELCOME TO TRON");
+	al_flip_display();
+	al_rest(2);
+	al_clear_to_color(al_map_rgb(100, 100, 255));
+	al_draw_textf(font, al_map_rgb(255, 255, 255), 390, 390, NULL, "Ready?");
+	al_flip_display();
+	al_rest(1);
+	al_clear_to_color(al_map_rgb(255, 100, 100));
+	al_draw_textf(font, al_map_rgb(255, 255, 255), 390, 390, NULL, "3");
+	al_flip_display();
+	al_rest(0.25);
+	al_clear_to_color(al_map_rgb(255, 100, 100));
+	al_draw_textf(font, al_map_rgb(255, 255, 255), 390, 390, NULL, "2");
+	al_flip_display();
+	al_rest(0.25);
+	al_clear_to_color(al_map_rgb(255, 255, 100));
+	al_draw_textf(font, al_map_rgb(255, 255, 255), 390, 390, NULL, "1");
+	al_flip_display();
+	al_rest(0.25);
+	al_clear_to_color(al_map_rgb(100, 255, 100));
+	al_draw_textf(font, al_map_rgb(255, 255, 255), 390, 390, NULL, "GO");
+	al_flip_display();
+	al_rest(0.25);
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 	al_flip_display();
 	al_start_timer(timer);
@@ -96,7 +123,7 @@ int main() {
 
 
 		if (ev.type == ALLEGRO_EVENT_TIMER) {
-
+			
 			//wipe map
 	/*		for (int i = 0; i < gridsize; i++)
 				for (int j = 0; j < gridsize; j++) {
@@ -251,7 +278,7 @@ int main() {
 			switch (ev.keyboard.keycode) {
 
 				//if the up key has been pressed
-			case ALLEGRO_KEY_UP:
+			case ALLEGRO_KEY_W:
 				key[0] = true;
 				key[1] = false;
 				key[2] = false;
@@ -259,7 +286,7 @@ int main() {
 				break;
 
 				//if the down key has been pressed
-			case ALLEGRO_KEY_DOWN:
+			case ALLEGRO_KEY_S:
 				key[1] = true;
 				key[2] = false;
 				key[3] = false;
@@ -267,7 +294,7 @@ int main() {
 				break;
 
 				//if the left key has been pressed
-			case ALLEGRO_KEY_LEFT:
+			case ALLEGRO_KEY_A:
 				key[2] = true;
 				key[3] = false;
 				key[0] = false;
@@ -275,35 +302,35 @@ int main() {
 				break;
 
 				//if the right key has been pressed
-			case ALLEGRO_KEY_RIGHT:
+			case ALLEGRO_KEY_D:
 				key[3] = true;
 				key[0] = false;
 				key[1] = false;
 				key[2] = false;
 				break;
 
-			case ALLEGRO_KEY_W:
+			case ALLEGRO_KEY_UP:
 				P2key[0] = true;
 				P2key[1] = false;
 				P2key[2] = false;
 				P2key[3] = false;
 				break;
 
-			case ALLEGRO_KEY_S:
+			case ALLEGRO_KEY_DOWN:
 				P2key[0] = false;
 				P2key[1] = true;
 				P2key[2] = false;
 				P2key[3] = false;
 				break;
 
-			case ALLEGRO_KEY_A:
+			case ALLEGRO_KEY_LEFT:
 				P2key[0] = false;
 				P2key[1] = false;
 				P2key[2] = true;
 				P2key[3] = false;
 				break;
 				
-			case ALLEGRO_KEY_D:
+			case ALLEGRO_KEY_RIGHT:
 				P2key[0] = false;
 				P2key[1] = false;
 				P2key[2] = false;
