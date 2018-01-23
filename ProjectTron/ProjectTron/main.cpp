@@ -11,6 +11,8 @@ using namespace std;
 
 
 int main() {
+	int lives = 3;
+	int P2lives = 3;
 	//variables and stuff
 	int SCREEN_W = 800;
 	int SCREEN_H = 800;
@@ -175,7 +177,7 @@ int main() {
 			nodes.insert(nodes.begin(), head_x);
 			nodes2.insert(nodes2.begin(), P2head_y);
 			nodes2.insert(nodes2.begin(), P2head_x);
-
+			
 			if (head_x < 0 || head_y < 0)
 				cout << "MATRIX ERROR" << endl;
 
@@ -184,11 +186,18 @@ int main() {
 	//			al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
 //				bite = al_load_sample("dead.wav");
 //				al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron1 done dedded dude");
+				al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 300, NULL, "Tron1 done dedded dude");
 				al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
 				al_flip_display();
+				lives = lives--;
 				al_rest(2);
-				return 0;
+				nodes.clear();
+				nodes2.clear();
+				int head_x = 1;
+				int head_y = 1;
+				int P2head_x = 38;
+				int P2head_y = 38;
+
 			}
 
 			if (P2head_x <= -1 || P2head_x > gridsize -1 || P2head_y <= -1 || P2head_y > gridsize -1) {
@@ -197,10 +206,18 @@ int main() {
 			//	//				bite = al_load_sample("dead.wav");
 			//	//				al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
-				al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron1 done winned dude");
+				al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 310, NULL, "Tron1 done winned dude");
 				al_flip_display();
+				P2lives = P2lives--;
 				al_rest(2);
-				return 0;
+				nodes.clear();
+				nodes2.clear();
+				int head_x = 1;
+				int head_y = 1;
+				int P2head_x = 38;
+				int P2head_y = 38;
+
+
 			}
 
 			for (iter = nodes.begin() + 2; iter < nodes.end(); iter += 2) {
@@ -214,11 +231,19 @@ int main() {
 				//	al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
 				//	bite = al_load_sample("dead.wav");
 				//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron1 done dedded dude");
+					al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 300, NULL, "Tron1 done dedded dude");
 					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
 					al_flip_display();
+					lives = lives--;
 					al_rest(2);
-					return 0;
+					nodes.clear();
+					nodes2.clear();
+					int head_x = 1;
+					int head_y = 1;
+					int P2head_x = 38;
+					int P2head_y = 38;
+
+
 				}
 
 				if ((P2head_x == *iter &&  P2head_y == *(iter + 1))) {
@@ -228,10 +253,18 @@ int main() {
 					//	bite = al_load_sample("dead.wav");
 					//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
-					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron1 done winned dude");
+					al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 310, NULL, "Tron1 done winned dude");
 					al_flip_display();
+					P2lives = P2lives--;
 					al_rest(2);
-					return 0;
+					nodes.clear();
+					nodes2.clear();
+					int head_x = 1;
+					int head_y = 1;
+					int P2head_x = 38;
+					int P2head_y = 38;
+
+
 				}
 			}
 			for (iter = nodes2.begin() + 2; iter < nodes2.end(); iter += 2) {
@@ -245,11 +278,19 @@ int main() {
 					//	al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Final Score:%d", score);
 					//	bite = al_load_sample("dead.wav");
 					//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron1 done dedded dude");
+					al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 300, NULL, "Tron1 done dedded dude");
 					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
 					al_flip_display();
+					lives = lives--;
 					al_rest(2);
-					return 0;
+					nodes.clear();
+					nodes2.clear();
+					int head_x = 1;
+					int head_y = 1;
+					int P2head_x = 38;
+					int P2head_y = 38;
+	
+
 				}
 
 				if ((P2head_x == *iter &&  P2head_y == *(iter + 1))) {
@@ -259,10 +300,16 @@ int main() {
 					//	bite = al_load_sample("dead.wav");
 					//	al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
-					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron1 done winned dude");
+					al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 310, NULL, "Tron1 done winned dude");
 					al_flip_display();
+					P2lives = P2lives--;
 					al_rest(2);
-					return 0;
+					nodes.clear();
+					nodes2.clear();
+					int head_x = 1;
+					int head_y = 1;
+					int P2head_x = 38;
+					int P2head_y = 38;
 				}
 			}
 			//erase nodes that have "fallen" off the end of the snek
@@ -396,7 +443,8 @@ int main() {
 				}
 //			al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Score:%d", score);
 //			al_draw_filled_rectangle(snak_x*sneksize, snak_y*sneksize, snak_x*sneksize + sneksize, snak_y*sneksize + sneksize, al_map_rgb(250, 50, 50));
-
+			al_draw_textf(font, al_map_rgb(200, 255, 200), 20, 770, 0, "lives:%d", lives);
+			al_draw_textf(font, al_map_rgb(255, 200, 200), 780, 770, 2, "P2lives:%d", lives);
 			al_flip_display();
 		}//end render
 	}
