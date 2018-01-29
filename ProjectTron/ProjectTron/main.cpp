@@ -44,12 +44,14 @@ int main() {
 	al_init_primitives_addon();
 	al_init_font_addon();
 	al_init_ttf_addon();
+	al_init_image_addon();
 	ALLEGRO_DISPLAY*display = al_create_display(SCREEN_W, SCREEN_H);
-//	ALLEGRO_BITMAP*snak = NULL;
+	ALLEGRO_BITMAP*bike1 = NULL;
+	ALLEGRO_BITMAP*bike2 = NULL;
 	ALLEGRO_FONT*font = NULL;
-//	ALLEGRO_SAMPLE*bite = NULL;
-//	ALLEGRO_SAMPLE*music = NULL;
-//	ALLEGRO_SAMPLE_INSTANCE*background = NULL;
+	ALLEGRO_SAMPLE*turn = NULL;
+	ALLEGRO_SAMPLE*music = NULL;
+	ALLEGRO_SAMPLE_INSTANCE*background = NULL;
 	ALLEGRO_TIMER*timer = NULL;
 	ALLEGRO_EVENT_QUEUE*event_queue = NULL;
 //trails
@@ -58,11 +60,10 @@ int main() {
 	vector<int>::const_iterator iter;
 
 
-
-//	al_reserve_samples(2);
-//	music = al_load_sample("SnekBeats.wav");
-//	al_play_sample(music, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
-//	bite = al_load_sample("Chomp.wav");
+	al_reserve_samples(2);
+	music = al_load_sample("TRON.wav");
+	al_play_sample(music, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+	turn = al_load_sample("Chomp.wav");
 	font = al_create_builtin_font();
 	timer = al_create_timer(speed);
 	display = al_create_display(SCREEN_W, SCREEN_H);
@@ -79,7 +80,7 @@ int main() {
 //	snak = al_create_bitmap(20, 20);
 	al_set_target_bitmap(al_get_backbuffer(display));
 	event_queue = al_create_event_queue();
-//	al_reserve_samples(10);
+	al_reserve_samples(10);
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
@@ -193,6 +194,8 @@ int main() {
 				al_rest(2);
 				nodes.clear();
 				nodes2.clear();
+				bool key[4]{ false, true, false, false };
+				bool P2key[4]{ true, false, false, false };
 				int head_x = 1;
 				int head_y = 1;
 				int P2head_x = 38;
@@ -212,6 +215,8 @@ int main() {
 				al_rest(2);
 				nodes.clear();
 				nodes2.clear();
+				bool key[4]{ false, true, false, false };
+				bool P2key[4]{ true, false, false, false };
 				int head_x = 1;
 				int head_y = 1;
 				int P2head_x = 38;
@@ -235,9 +240,11 @@ int main() {
 					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
 					al_flip_display();
 					lives = lives--;
-					al_rest(2);
+					al_rest(2);				
 					nodes.clear();
 					nodes2.clear();
+					bool key[4]{ false, true, false, false };
+					bool P2key[4]{ true, false, false, false };
 					int head_x = 1;
 					int head_y = 1;
 					int P2head_x = 38;
@@ -259,6 +266,8 @@ int main() {
 					al_rest(2);
 					nodes.clear();
 					nodes2.clear();
+					bool key[4]{ false, true, false, false };
+					bool P2key[4]{ true, false, false, false };
 					int head_x = 1;
 					int head_y = 1;
 					int P2head_x = 38;
@@ -285,6 +294,8 @@ int main() {
 					al_rest(2);
 					nodes.clear();
 					nodes2.clear();
+					bool key[4]{ false, true, false, false };
+					bool P2key[4]{ true, false, false, false };
 					int head_x = 1;
 					int head_y = 1;
 					int P2head_x = 38;
@@ -306,6 +317,8 @@ int main() {
 					al_rest(2);
 					nodes.clear();
 					nodes2.clear();
+					bool key[4]{ false, true, false, false };
+					bool P2key[4]{ true, false, false, false };
 					int head_x = 1;
 					int head_y = 1;
 					int P2head_x = 38;
@@ -330,6 +343,8 @@ int main() {
 				key[1] = false;
 				key[2] = false;
 				key[3] = false;
+				turn = al_load_sample("Chomp.wav");
+				al_play_sample(turn, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 
 				//if the down key has been pressed
@@ -338,6 +353,8 @@ int main() {
 				key[2] = false;
 				key[3] = false;
 				key[0] = false;
+				turn = al_load_sample("Chomp.wav");
+				al_play_sample(turn, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 
 				//if the left key has been pressed
@@ -346,6 +363,8 @@ int main() {
 				key[3] = false;
 				key[0] = false;
 				key[1] = false;
+				turn = al_load_sample("Chomp.wav");
+				al_play_sample(turn, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 
 				//if the right key has been pressed
@@ -354,6 +373,8 @@ int main() {
 				key[0] = false;
 				key[1] = false;
 				key[2] = false;
+				turn = al_load_sample("Chomp.wav");
+				al_play_sample(turn, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 
 			case ALLEGRO_KEY_UP:
@@ -361,6 +382,8 @@ int main() {
 				P2key[1] = false;
 				P2key[2] = false;
 				P2key[3] = false;
+				turn = al_load_sample("Chomp.wav");
+				al_play_sample(turn, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 
 			case ALLEGRO_KEY_DOWN:
@@ -368,6 +391,8 @@ int main() {
 				P2key[1] = true;
 				P2key[2] = false;
 				P2key[3] = false;
+				turn = al_load_sample("Chomp.wav");
+				al_play_sample(turn, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 
 			case ALLEGRO_KEY_LEFT:
@@ -375,6 +400,8 @@ int main() {
 				P2key[1] = false;
 				P2key[2] = true;
 				P2key[3] = false;
+				turn = al_load_sample("Chomp.wav");
+				al_play_sample(turn, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 				
 			case ALLEGRO_KEY_RIGHT:
@@ -382,6 +409,8 @@ int main() {
 				P2key[1] = false;
 				P2key[2] = false;
 				P2key[3] = true;
+				turn = al_load_sample("Chomp.wav");
+				al_play_sample(turn, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 			}
 		}
@@ -447,6 +476,18 @@ int main() {
 			al_draw_textf(font, al_map_rgb(255, 200, 200), 780, 770, 2, "P2lives:%d", lives);
 			al_flip_display();
 		}//end render
+		if (lives <= 0) {
+			al_clear_to_color(al_map_rgb(255, 200, 200));
+			al_draw_textf(font, al_map_rgb(255, 255, 255), 300, 300, 1, "P2 WINS");
+			al_rest(3);
+			return 0;
+		}
+		else if (P2lives <= 0) {
+			al_clear_to_color(al_map_rgb(200, 255, 200));
+			al_draw_textf(font, al_map_rgb(255, 255, 255), 300, 300, 1, "P1 WINS");
+			al_rest(3);
+			return 0;
+		}
 	}
 
 	al_destroy_timer(timer);
