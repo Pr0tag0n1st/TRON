@@ -11,8 +11,7 @@ using namespace std;
 
 
 int main() {
-	int lives = 3;
-	int P2lives = 3;
+
 	//variables and stuff
 	int SCREEN_W = 800;
 	int SCREEN_H = 800;
@@ -190,16 +189,9 @@ int main() {
 				al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 300, NULL, "Tron1 done dedded dude");
 				al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
 				al_flip_display();
-				lives = lives--;
-				al_rest(2);
-				nodes.clear();
-				nodes2.clear();
-				bool key[4]{ false, true, false, false };
-				bool P2key[4]{ true, false, false, false };
-				int head_x = 1;
-				int head_y = 1;
-				int P2head_x = 38;
-				int P2head_y = 38;
+				al_rest(3.0);
+				return 0;
+
 
 			}
 
@@ -211,16 +203,9 @@ int main() {
 				al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
 				al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 310, NULL, "Tron1 done winned dude");
 				al_flip_display();
-				P2lives = P2lives--;
-				al_rest(2);
-				nodes.clear();
-				nodes2.clear();
-				bool key[4]{ false, true, false, false };
-				bool P2key[4]{ true, false, false, false };
-				int head_x = 1;
-				int head_y = 1;
-				int P2head_x = 38;
-				int P2head_y = 38;
+				al_rest(3.0);
+				return 0;
+
 
 
 			}
@@ -239,16 +224,9 @@ int main() {
 					al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 300, NULL, "Tron1 done dedded dude");
 					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
 					al_flip_display();
-					lives = lives--;
-					al_rest(2);				
-					nodes.clear();
-					nodes2.clear();
-					bool key[4]{ false, true, false, false };
-					bool P2key[4]{ true, false, false, false };
-					int head_x = 1;
-					int head_y = 1;
-					int P2head_x = 38;
-					int P2head_y = 38;
+
+					al_rest(3.0);
+					return 0;
 
 
 				}
@@ -262,16 +240,8 @@ int main() {
 					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
 					al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 310, NULL, "Tron1 done winned dude");
 					al_flip_display();
-					P2lives = P2lives--;
-					al_rest(2);
-					nodes.clear();
-					nodes2.clear();
-					bool key[4]{ false, true, false, false };
-					bool P2key[4]{ true, false, false, false };
-					int head_x = 1;
-					int head_y = 1;
-					int P2head_x = 38;
-					int P2head_y = 38;
+					al_rest(3.0);
+					return 0;
 
 
 				}
@@ -290,17 +260,9 @@ int main() {
 					al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 300, NULL, "Tron1 done dedded dude");
 					al_draw_textf(font, al_map_rgb(255, 200, 200), 300, 310, NULL, "Tron2 done winned dude");
 					al_flip_display();
-					lives = lives--;
-					al_rest(2);
-					nodes.clear();
-					nodes2.clear();
-					bool key[4]{ false, true, false, false };
-					bool P2key[4]{ true, false, false, false };
-					int head_x = 1;
-					int head_y = 1;
-					int P2head_x = 38;
-					int P2head_y = 38;
-	
+					al_rest(3.0);
+					return 0;
+
 
 				}
 
@@ -313,16 +275,9 @@ int main() {
 					al_draw_textf(font, al_map_rgb(255, 100, 100), 300, 300, NULL, "Tron2 done dedded dude");
 					al_draw_textf(font, al_map_rgb(200, 255, 200), 300, 310, NULL, "Tron1 done winned dude");
 					al_flip_display();
-					P2lives = P2lives--;
-					al_rest(2);
-					nodes.clear();
-					nodes2.clear();
-					bool key[4]{ false, true, false, false };
-					bool P2key[4]{ true, false, false, false };
-					int head_x = 1;
-					int head_y = 1;
-					int P2head_x = 38;
-					int P2head_y = 38;
+					al_rest(3.0);
+					return 0;
+
 				}
 			}
 			//erase nodes that have "fallen" off the end of the snek
@@ -472,23 +427,12 @@ int main() {
 				}
 //			al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 770, 0, "Score:%d", score);
 //			al_draw_filled_rectangle(snak_x*sneksize, snak_y*sneksize, snak_x*sneksize + sneksize, snak_y*sneksize + sneksize, al_map_rgb(250, 50, 50));
-			al_draw_textf(font, al_map_rgb(200, 255, 200), 20, 770, 0, "lives:%d", lives);
-			al_draw_textf(font, al_map_rgb(255, 200, 200), 780, 770, 2, "P2lives:%d", lives);
+	
 			al_flip_display();
 		}//end render
-		if (lives <= 0) {
-			al_clear_to_color(al_map_rgb(255, 200, 200));
-			al_draw_textf(font, al_map_rgb(255, 255, 255), 300, 300, 1, "P2 WINS");
-			al_rest(3);
-			return 0;
+
 		}
-		else if (P2lives <= 0) {
-			al_clear_to_color(al_map_rgb(200, 255, 200));
-			al_draw_textf(font, al_map_rgb(255, 255, 255), 300, 300, 1, "P1 WINS");
-			al_rest(3);
-			return 0;
-		}
-	}
+	
 
 	al_destroy_timer(timer);
 	al_destroy_display(display);
